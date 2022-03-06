@@ -1,0 +1,22 @@
+import pandas as pd
+# No lugar dos seus CSVs vou representar aqui dois dataframes
+# Os dois têm uma chave de string em comum - a coluna "nome"
+
+
+df_1 = pd.read_excel("RelatorioIteracao_2021_02-GNDI-BELEM.xlsx")
+
+
+df_2 = pd.read_excel("DB_REP_JOURNEY_soH_FEV-21-GNDI-BELEM.xlsx")
+
+
+
+# Agora eu uno os dois dataframes, apenas nos casos que possuem nomes iguais
+novo_df = pd.merge(df_1, df_2, left_on='Iteracao-1', right_on='ID_SEQ_ATENDIMENTO_ITERACAO-2', how="left")
+novo_df.info()
+#print(novo_df)
+file_name = "resultado.csv"
+
+#Returns all rows from both tables, join records from the left which have matching keys in the right table.When there is no Matching from any table NaN will be returned
+
+#novo_df.to_excel(file_name)
+novo_df.to_csv(file_name)
